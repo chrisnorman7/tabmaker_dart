@@ -1,5 +1,5 @@
 name: tabmaker_dart
-version: 0.0.2
+version: 0.0.3
 description: A utility for turning easy-to-write tabs into markdown.
 repository: https://github.com/chrisnorman7/tabmaker_dart
 

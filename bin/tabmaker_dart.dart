@@ -44,7 +44,7 @@ void main(List<String> arguments) {
   }
   if (results.wasParsed('help')) {
     final usage = parser.usage;
-    return print('Convert easy-to-read tabs into markdown.\n\n'
+    return print('Convert easy-to-write tabs into markdown.\n\n'
         'Usage: tabmaker <in-file>[ <out-file>]'
         '\n\n$usage');
   }
