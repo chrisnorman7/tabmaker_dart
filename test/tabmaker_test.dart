@@ -14,7 +14,6 @@ void main() {
     test('stdout', () async {
       final process = await TestProcess.start('dart', [
         'bin/tabmaker_dart.dart',
-        '-i',
         'small.in',
       ]);
       await expectLater(process.stdout, emits('# Untitled Song'));
@@ -26,8 +25,8 @@ void main() {
     });
     test('Write to file', () async {
       expect(outFile.existsSync(), isFalse);
-      final process = await TestProcess.start('dart',
-          ['bin/tabmaker_dart.dart', '-i', 'small.in', '-o', outFile.path]);
+      final process = await TestProcess.start(
+          'dart', ['bin/tabmaker_dart.dart', 'small.in', outFile.path]);
       await expectLater(process.stdout, emits('small.in -> ${outFile.path}.'));
       await process.shouldExit(0);
       expect(outFile.existsSync(), isTrue);
@@ -35,7 +34,6 @@ void main() {
     test('Full file', () async {
       final process = await TestProcess.start('dart', [
         'bin/tabmaker_dart.dart',
-        '-i',
         'faithful.in',
         '-t',
         'O Come, All Ye Faithful',
