@@ -9,10 +9,7 @@ String positionToString(int lineNumber, int charNumber) =>
     'line ${lineNumber + 1} char ${charNumber + 1}';
 
 void main(List<String> arguments) {
-  final parser = ArgParser(allowTrailingOptions: false)
-    ..addOption('input-file', abbr: 'i', help: 'The file to convert')
-    ..addOption('output-file',
-        abbr: 'o', help: 'The file to write the converted tab to')
+  final parser = ArgParser()
     ..addOption('language',
         abbr: 'l',
         help: 'The name of the language to use in the resulting code block',
@@ -47,22 +44,27 @@ void main(List<String> arguments) {
   }
   if (results.wasParsed('help')) {
     final usage = parser.usage;
-    return print('Convert Chris-friendly tabs to ones normal people can use.'
+    return print('Convert easy-to-read tabs into markdown.\n\n'
+        'Usage: tabmaker <in-file>[ <out-file>]'
         '\n\n$usage');
   }
-  if (results.wasParsed('input-file') == false) {
+  final rest = results.rest;
+  if (rest.isEmpty) {
     return print('You must provide a file to read from.');
   }
-  final inputFile = File(results['input-file'] as String);
+  final inputFile = File(rest.first);
   if (inputFile.existsSync() == false) {
     return print('Input file ${inputFile.path} does not exist.');
   }
   final input = inputFile.readAsStringSync();
   final File? outputFile;
-  if (results.wasParsed('output-file')) {
-    outputFile = File(results['output-file'] as String);
+  if (rest.length == 2) {
+    outputFile = File(rest.last);
   } else {
     outputFile = null;
+    if (rest.length > 2) {
+      return print('Too many arguments.');
+    }
   }
   final lines = input.split('\n');
   final padHeading = results['pad-heading'] as String;
