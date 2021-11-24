@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.0.4]
+
+### Changed
+
+* Use stdout directly, instead of using the `print` function.
+
 ## [0.0.3]
 
 ### Changed

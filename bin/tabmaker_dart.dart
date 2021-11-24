@@ -145,7 +145,7 @@ void main(List<String> arguments) {
     ..write(score)
     ..writeln('```');
   if (outputFile == null) {
-    print(output);
+    stdout.write(output);
   } else {
     outputFile.writeAsStringSync(output.toString());
     print('${inputFile.path} -> ${outputFile.path}.');
