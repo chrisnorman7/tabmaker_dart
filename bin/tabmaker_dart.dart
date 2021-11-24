@@ -136,6 +136,10 @@ void main(List<String> arguments) {
     if (chordsString.isNotEmpty) {
       score.writeln(chordsString);
     }
+    if (bracketFound) {
+      return print('Unfinished chord at '
+          '${positionToString(lineNumber, line.length)}.');
+    }
     score.writeln(words);
   }
   final output = StringBuffer()

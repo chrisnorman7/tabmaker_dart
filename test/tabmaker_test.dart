@@ -63,5 +63,12 @@ void main() {
       }
       await process.shouldExit(0);
     });
+    test('Unfinished Chords', () async {
+      final process = await TestProcess.start(
+          'dart', ['bin/tabmaker_dart.dart', 'unclosed.in']);
+      await process.shouldExit(0);
+      await expectLater(
+          process.stdout, emits('Unfinished chord at line 1 char 36.'));
+    });
   });
 }

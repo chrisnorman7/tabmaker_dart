@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.0.7]
+
+### Fixed
+
+* Unclosed chords are now caught.
+
 ## [0.0.6]
 
 ### Changed
