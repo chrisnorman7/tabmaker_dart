@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.0.6]
+
+### Changed
+
+* No longer write empty chord lines.
+
 ## [0.0.5]
 
 ### Fixed

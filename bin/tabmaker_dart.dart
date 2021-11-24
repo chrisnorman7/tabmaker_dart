@@ -131,10 +131,12 @@ void main(List<String> arguments) {
         }
       }
     }
-    score
-      ..writeln()
-      ..writeln(chords.toString().trimRight())
-      ..writeln(words);
+    final chordsString = chords.toString().trimRight();
+    score.writeln();
+    if (chordsString.isNotEmpty) {
+      score.writeln(chordsString);
+    }
+    score.writeln(words);
   }
   final output = StringBuffer()
     ..writeln('$padHeading# $title')
