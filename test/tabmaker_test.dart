@@ -47,5 +47,21 @@ void main() {
       }
       await process.shouldExit(0);
     });
+    test('Angels', () async {
+      final process = await TestProcess.start('dart', [
+        'bin/tabmaker_dart.dart',
+        'angels.in',
+        '-t',
+        'Hark the Herald Angels Sing',
+        '-a',
+        'classicfm.com'
+      ]);
+      final lines = File('angels.test').readAsLinesSync();
+      while (lines.isNotEmpty) {
+        final line = lines.removeAt(0);
+        await expectLater(process.stdout, emitsThrough(line));
+      }
+      await process.shouldExit(0);
+    });
   });
 }

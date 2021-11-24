@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.0.5]
+
+### Fixed
+
+* Fixed a bug where some chords with multiple characters would split words.
+
 ## [0.0.4]
 
 ### Changed

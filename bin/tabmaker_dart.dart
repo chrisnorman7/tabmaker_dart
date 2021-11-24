@@ -86,6 +86,7 @@ void main(List<String> arguments) {
     final words = StringBuffer();
     bool bracketFound = false;
     int chordOverflow = 0;
+    bool firstChordFound = false;
     int numberOfSpaces = 0;
     for (var charNumber = 0; charNumber < line.length; charNumber++) {
       final char = line[charNumber];
@@ -97,6 +98,7 @@ void main(List<String> arguments) {
         }
         bracketFound = true;
       } else if (char == chordEnd) {
+        firstChordFound = true;
         if (bracketFound == false) {
           return print('Unmatched chord end symbol found at '
               '${positionToString(lineNumber, charNumber)}.');
@@ -109,7 +111,7 @@ void main(List<String> arguments) {
         key ??= chord.toString();
       } else {
         if (bracketFound) {
-          if (numberOfSpaces == 0 && charNumber > 1) {
+          if (numberOfSpaces == 0 && charNumber > 1 && firstChordFound) {
             words.write(separator);
             chords.write(space * (separator.length - chordOverflow));
             chordOverflow = 0;
